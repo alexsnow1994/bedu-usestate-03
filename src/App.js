@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import './App.css';
+import CommentState from './Components/Context/Coments/CommentState';
+
+import Exercise from './Components/Exercise';
+import Home from './Components/Home';
+import Layout from './Components/Layout';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    
+       <CommentState>
+          <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={ <Layout /> }>
+                  {/* outlets jerarquicamente hijos de layout */}
+                    <Route path="/" element={ <Home /> } />
+                    <Route path="/ejercicio" element={ <Exercise /> } />
+                    </Route>
+                  </Routes>
+            </BrowserRouter>
+       </CommentState>
+    
+  </>
   );
 }
+
+
 
 export default App;
